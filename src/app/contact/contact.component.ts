@@ -14,8 +14,8 @@ export class ContactComponent implements OnInit {
 
   constructor(private api: ApiService, private formBuilder: FormBuilder) {
     this.messageForm = this.formBuilder.group({
-      name: ["", Validators.required],
-      title: ["", Validators.required],
+      email: ["", [Validators.required, Validators.email]],
+      subject: ["", Validators.required],
       message: ["", Validators.required]
     });
   }

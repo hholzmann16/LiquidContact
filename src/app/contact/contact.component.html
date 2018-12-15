@@ -6,34 +6,40 @@
       <h5 *ngIf="success">Your form is valid!</h5>
 
       <div class="form-group row">
-        <label class="col-sm-2 col-form-label">Name:</label>
+        <label class="col-sm-2 col-form-label">Email:</label>
         <div class="col-sm-10">
-          <input type="text" class="form-control" formControlName="name" />
+          <input type="text" class="form-control" formControlName="email" />
         </div>
       </div>
-      <div *ngIf="submitted && messageForm.controls.name.errors" class="row">
+      <div *ngIf="submitted && messageForm.controls.email.errors" class="row">
         <div class="offset-sm-2 col-sm-10">
           <div
-            *ngIf="messageForm.controls.name.errors.required"
+            *ngIf="messageForm.controls.email.errors.required"
             class="alert alert-danger"
           >
-            Your name is required
+            Email is required
+          </div>
+          <div
+            *ngIf="messageForm.controls.email.errors.email"
+            class="alert alert-danger"
+          >
+            Must be a valid email
           </div>
         </div>
       </div>
       <div class="form-group row">
-        <label class="col-sm-2 col-form-label">Title:</label>
+        <label class="col-sm-2 col-form-label">Subject:</label>
         <div class="col-sm-10">
-          <input type="text" class="form-control" formControlName="title" />
+          <input type="text" class="form-control" formControlName="subject" />
         </div>
       </div>
-      <div *ngIf="submitted && messageForm.controls.title.errors" class="row">
+      <div *ngIf="submitted && messageForm.controls.subject.errors" class="row">
         <div class="offset-sm-2 col-sm-10">
           <div
-            *ngIf="messageForm.controls.title.errors.required"
+            *ngIf="messageForm.controls.subject.errors.required"
             class="alert alert-danger"
           >
-            A message title is required
+            Subject is required
           </div>
         </div>
       </div>
@@ -49,7 +55,7 @@
             *ngIf="messageForm.controls.message.errors.required"
             class="alert alert-danger"
           >
-            A message is required
+            Message is required
           </div>
         </div>
       </div>
