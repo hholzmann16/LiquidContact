@@ -1,3 +1,60 @@
-<p>
-  contact works!
-</p>
+<h1>Contact Us</h1>
+
+<div class="row justify-content-md-center">
+  <div class="col-5">
+    <form [formGroup]="messageForm" (ngSubmit)="onSubmit()">
+      <h5 *ngIf="success">Your form is valid!</h5>
+
+      <div class="form-group row">
+        <label class="col-sm-2 col-form-label">Name:</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" formControlName="name" />
+        </div>
+      </div>
+      <div *ngIf="submitted && messageForm.controls.name.errors" class="row">
+        <div class="offset-sm-2 col-sm-10">
+          <div
+            *ngIf="messageForm.controls.name.errors.required"
+            class="alert alert-danger"
+          >
+            Your name is required
+          </div>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-sm-2 col-form-label">Title:</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" formControlName="title" />
+        </div>
+      </div>
+      <div *ngIf="submitted && messageForm.controls.title.errors" class="row">
+        <div class="offset-sm-2 col-sm-10">
+          <div
+            *ngIf="messageForm.controls.title.errors.required"
+            class="alert alert-danger"
+          >
+            A message title is required
+          </div>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-sm-2 col-form-label">Message:</label>
+        <div class="col-sm-10">
+          <textarea class="form-control" formControlName="message"></textarea>
+        </div>
+      </div>
+      <div *ngIf="submitted && messageForm.controls.message.errors" class="row">
+        <div class="offset-sm-2 col-sm-10">
+          <div
+            *ngIf="messageForm.controls.message.errors.required"
+            class="alert alert-danger"
+          >
+            A message is required
+          </div>
+        </div>
+      </div>
+
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+  </div>
+</div>
