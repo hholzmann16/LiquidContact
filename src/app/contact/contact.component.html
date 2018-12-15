@@ -46,13 +46,13 @@
       <div class="form-group row">
         <label class="col-sm-2 col-form-label">Message:</label>
         <div class="col-sm-10">
-          <textarea class="form-control" formControlName="message"></textarea>
+          <textarea class="form-control" formControlName="body"></textarea>
         </div>
       </div>
-      <div *ngIf="submitted && messageForm.controls.message.errors" class="row">
+      <div *ngIf="submitted && messageForm.controls.body.errors" class="row">
         <div class="offset-sm-2 col-sm-10">
           <div
-            *ngIf="messageForm.controls.message.errors.required"
+            *ngIf="messageForm.controls.body.errors.required"
             class="alert alert-danger"
           >
             Message is required
@@ -62,5 +62,33 @@
 
       <button type="submit" class="btn btn-primary">Submit</button>
     </form>
+  </div>
+</div>
+
+<div class="modal" tabindex="-1" role="dialog" id="messageModal">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-12">
+            <div *ngIf="success" class="alert alert-success">
+              Your message has been submitted successfully!
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-12">
+            <div *ngIf="badRequest" class="alert alert-danger">
+              Your message could not be processed at this time.
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">
+          Close
+        </button>
+      </div>
+    </div>
   </div>
 </div>
