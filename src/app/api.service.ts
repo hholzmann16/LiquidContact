@@ -7,12 +7,14 @@ import { ContactForm } from "./contact/contactForm";
   providedIn: "root"
 })
 export class ApiService {
-  constructor(private http: HttpClient) {}
+  url: string = "";
+
+  constructor(private http: HttpClient) {
+    this.url =
+      "http://interview-contact-submit-api-lb-1009699934.us-east-1.elb.amazonaws.com/contact-us/send";
+  }
 
   postContact(contactForm: ContactForm) {
-    return this.http.post(
-      "http://interview-contact-submit-api-lb-1009699934.us-east-1.elb.amazonaws.com/contact-us/send",
-      contactForm
-    );
+    return this.http.post(this.url, contactForm);
   }
 }

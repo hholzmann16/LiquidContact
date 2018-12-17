@@ -1,9 +1,8 @@
 import { Component, OnInit } from "@angular/core";
 import { ApiService } from "../api.service";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
-
-import { Observable } from "rxjs";
-import { catchError } from "rxjs/operators";
+import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
+import { ModalComponent } from "../modal/modal.component";
 
 @Component({
   selector: "app-contact",
@@ -12,10 +11,15 @@ import { catchError } from "rxjs/operators";
 })
 export class ContactComponent implements OnInit {
   messageForm: FormGroup;
+  submitted: boolean = false;
   success: boolean = false;
   badRequest: boolean = false;
 
-  constructor(private api: ApiService, private formBuilder: FormBuilder) {
+  constructor(
+    private api: ApiService,
+    private formBuilder: FormBuilder,
+    private modalService: NgbModal
+  ) {
     this.messageForm = this.formBuilder.group({
       email: ["", [Validators.required, Validators.email]],
       subject: ["", Validators.required],
@@ -24,21 +28,31 @@ export class ContactComponent implements OnInit {
   }
 
   onSubmit() {
+    this.submitted = true;
     this.badRequest = false;
     this.success = false;
 
-    this.api
-      .postContact(this.messageForm.value)
-      .pipe(
-        catchError(() => {
-          this.badRequest = true;
-          throw new Error("This error is logged!.... or should be at least.");
-        })
-      )
-      .subscribe(contact => {
+    if (this.messageForm.invalid) {
+      return;
+    }
+
+    this.api.postContact(this.messageForm.value).subscribe(
+      () => {
         this.success = true;
-        // angular.element("messageModal").
-      });
+
+        const modal = this.modalService.open(ModalComponent);
+        modal.componentInstance.title = "Great success!";
+        modal.componentInstance.success = this.success;
+      },
+      err => {
+        console.log("Error occurred posting contact information", err);
+        this.badRequest = true;
+
+        const modal = this.modalService.open(ModalComponent);
+        modal.componentInstance.title = "Uh oh!";
+        modal.componentInstance.badRequest = this.badRequest;
+      }
+    );
   }
 
   ngOnInit() {}

@@ -3,8 +3,6 @@
 <div class="row justify-content-md-center">
   <div class="col-5">
     <form [formGroup]="messageForm" (ngSubmit)="onSubmit()">
-      <h5 *ngIf="success">Your form is valid!</h5>
-
       <div class="form-group row">
         <label class="col-sm-2 col-form-label">Email:</label>
         <div class="col-sm-10">
@@ -62,33 +60,5 @@
 
       <button type="submit" class="btn btn-primary">Submit</button>
     </form>
-  </div>
-</div>
-
-<div class="modal" tabindex="-1" role="dialog" id="messageModal">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-body">
-        <div class="row">
-          <div class="col-12">
-            <div *ngIf="success" class="alert alert-success">
-              Your message has been submitted successfully!
-            </div>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-12">
-            <div *ngIf="badRequest" class="alert alert-danger">
-              Your message could not be processed at this time.
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">
-          Close
-        </button>
-      </div>
-    </div>
   </div>
 </div>
