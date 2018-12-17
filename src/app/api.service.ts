@@ -3,6 +3,10 @@ import { HttpClient } from "@angular/common/http";
 
 import { ContactForm } from "./contact/contactForm";
 
+/**
+ * API service created to communicate with back-end, modularized to work in any component
+ */
+
 @Injectable({
   providedIn: "root"
 })

@@ -11,15 +11,16 @@ import { ModalComponent } from "../modal/modal.component";
 })
 export class ContactComponent implements OnInit {
   messageForm: FormGroup;
-  submitted: boolean = false;
-  success: boolean = false;
-  badRequest: boolean = false;
+  submitted: boolean = false; // Toggled when form is submitted
+  success: boolean = false; // Toggled on a successful post request
+  badRequest: boolean = false; // Toggled on a failed post request
 
   constructor(
     private api: ApiService,
     private formBuilder: FormBuilder,
     private modalService: NgbModal
   ) {
+    // Creating message form with validators
     this.messageForm = this.formBuilder.group({
       email: ["", [Validators.required, Validators.email]],
       subject: ["", Validators.required],
@@ -32,6 +33,7 @@ export class ContactComponent implements OnInit {
     this.badRequest = false;
     this.success = false;
 
+    // Checks validators before sending API request
     if (this.messageForm.invalid) {
       return;
     }
