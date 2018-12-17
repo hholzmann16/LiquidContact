@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<nav class="navbar navbar-expand-lg navbar-dark bg-main">
   <a class="navbar-brand" routerLink="/">{{ company }}</a>
   <button
     class="navbar-toggler"
@@ -14,12 +14,12 @@
 
   <div class="navbar-collapse collapse w-100" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
+      <li [class.active]="this.router.url == '/'" class="nav-item">
         <a class="nav-link" routerLink="/"
           >Home <span class="sr-only">(current)</span></a
         >
       </li>
-      <li class="nav-item">
+      <li [class.active]="this.router.url == '/contact'" class="nav-item">
         <a class="nav-link" routerLink="/contact">Contact Us!</a>
       </li>
     </ul>
